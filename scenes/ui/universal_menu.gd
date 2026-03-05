@@ -2,14 +2,29 @@ extends CanvasLayer
 
 const WORLD_FOREST = preload("uid://yubh30707eb7")
 
+@export_category("Multiplayer Peers")
+@export var current_peer: Network.PEERS
+
+@onready var select_peer: OptionButton = %SelectPeer
 @onready var line_edit_session: LineEdit = %LineEditSession
 @onready var line_edit_username: LineEdit = %LineEditUsername
 @onready var button_join: Button = %ButtonJoin
 @onready var button_host: Button = %ButtonHost
 @onready var button_quit: Button = %ButtonQuit
 @onready var label_error: Label = %LabelError
+@onready var all_peers: VBoxContainer = %AllPeers
+@onready var label_sessionid: Label = %LabelSessionid
 
 func _ready() -> void:
+	if current_peer == Network.PEERS.None:
+		all_peers.hide()
+	else:
+		on_peer_selected(current_peer)
+
+	select_peer.item_selected.connect(on_peer_selected)
+	for peer_option in Network.PEERS.keys():
+		select_peer.add_item(peer_option)
+
 	line_edit_session.text_changed.connect(update_session)
 	line_edit_username.text_changed.connect(update_username)
 	
@@ -45,3 +60,11 @@ func on_error():
 		multiplayer.connected_to_server.disconnect(add_world)
 	line_edit_session.text_changed.emit("")
 	label_error.show()
+
+func on_peer_selected(item_index): 
+	all_peers.show()
+	Network.set_peer(item_index)
+	match item_index:
+		Network.PEERS.Enet:
+			label_sessionid.hide()
+			line_edit_session.text = Network.IP_ADDRESS

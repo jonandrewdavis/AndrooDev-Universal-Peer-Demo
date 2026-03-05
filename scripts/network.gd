@@ -2,6 +2,20 @@ extends Node
 
 const PLAYER = preload("uid://dbcqeo103wau6")
 
+var peer_selected: PEERS = PEERS.Enet: set = set_peer
+enum PEERS { 
+	None,
+	Enet,
+	EnetRelay,
+	WebRTC,	
+	Websockets,
+	Steam,
+	Epic,
+}
+
+
+#region Peer Init
+
 var enet_peer := ENetMultiplayerPeer.new()
 var PORT := 9999
 var IP_ADDRESS := '127.0.0.1'
@@ -13,20 +27,17 @@ var node_tunnel_id := 'vki6jrs3ezr133x'
 var tube_client := TubeClient.new()
 const TUBE_CONTEXT = preload("uid://chqw3jdoon6c1")
 
-var peer_selected: PEERS
+# TODO: FreeMP
+var websockets_peer
 
-# ENUM? 
-enum PEERS { 
-	Enet,
-	NodeTunnel,
-	Tube,	
-	Steam,
-	Websockets
-}
+# TODO: Steam
+var steam_peer
 
-var enet_enabled := true
-var node_enabled := false
-var tube_enabled := false
+# TODO: Epic Online Service
+#@onready var peer: EOSGMultiplayerPeer = EOSGMultiplayerPeer.new()
+var eos
+
+#endregion
 
 var current_session_id := ''
 var host_function: Callable
@@ -34,14 +45,14 @@ var join_function: Callable
 
 signal signal_error_raised
 
+func set_peer(new_value: PEERS):
+	peer_selected = new_value 
 
-func _ready() -> void:
-	# TODO: Move these into "ready_xyz" functions?
-	match (true):
-		enet_enabled:
+	match new_value:
+		PEERS.Enet:
 			host_function = start_server
 			join_function = join_server
-		node_enabled:
+		PEERS.EnetRelay:
 			node_peer = NodeTunnelPeer.new()
 			node_peer.authenticated.connect(handle_node_tunnel_ready)
 			node_peer.room_connected.connect(handle_room_ready)
@@ -50,7 +61,7 @@ func _ready() -> void:
 			host_function = start_node
 			join_function = join_node
 			multiplayer.multiplayer_peer = node_peer
-		tube_enabled:
+		PEERS.WebRTC:
 			tube_client.context = TUBE_CONTEXT
 			get_tree().root.add_child.call_deferred(tube_client)
 			host_function = start_tube
@@ -58,16 +69,18 @@ func _ready() -> void:
 			tube_client._session_initiated.connect(func(): current_session_id = tube_client.session_id)
 			tube_client.error_raised.connect(handle_error_raised)
 
-# TODO: STEAM
-
 # Bind?
 func host():
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	host_function.call()
+	if not peer_selected == PEERS.EnetRelay:
+		add_player(1)
+	else: 
+		node_peer.room_connected.connect(add_player_self)
 
 func join(session_id: String = ''):
-	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_connected.connect(add_player) 
 	multiplayer.peer_disconnected.connect(remove_player)
 	multiplayer.connected_to_server.connect(add_player_self)
 	join_function.call(session_id)
@@ -77,15 +90,13 @@ func join(session_id: String = ''):
 func start_server():
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
-	add_player(1)
-	
+
 func join_server(_session_id: String = ''):
 	enet_peer.create_client(IP_ADDRESS, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
 func start_tube():
 	tube_client.create_session()
-	add_player(1)
 
 func join_tube(session_id: String):
 	tube_client.join_session(session_id)
@@ -122,7 +133,7 @@ func remove_player(peer_id):
 		players[player_to_remove].queue_free()
 
 func leave_server():
-	if tube_enabled:
+	if peer_selected == PEERS.WebRTC:
 		tube_client.leave_session()
 
 	multiplayer.multiplayer_peer.close()
@@ -139,7 +150,7 @@ func clean_up_signals():
 		multiplayer.connected_to_server.disconnect(add_player_self)
 
 func _exit_tree() -> void:
-	if tube_enabled:
+	if peer_selected == PEERS.WebRTC:
 		tube_client.leave_session()
 
 func handle_node_tunnel_ready():
