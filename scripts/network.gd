@@ -47,8 +47,11 @@ signal signal_error_raised
 
 func set_peer(new_value: PEERS):
 	peer_selected = new_value 
-
-	match new_value:
+	
+	# TODO: Assure reset
+	reset_all_peers()
+	
+	match new_value:	
 		PEERS.Enet:
 			host_function = start_server
 			join_function = join_server
@@ -163,3 +166,6 @@ func handle_room_ready():
 func handle_error_raised(..._args):
 	clean_up_signals()
 	signal_error_raised.emit()
+
+func reset_all_peers():
+	pass

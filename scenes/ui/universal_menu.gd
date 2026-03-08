@@ -14,6 +14,7 @@ const WORLD_FOREST = preload("uid://yubh30707eb7")
 @onready var label_error: Label = %LabelError
 @onready var all_peers: VBoxContainer = %AllPeers
 @onready var label_sessionid: Label = %LabelSessionid
+@onready var label_username: Label = %LabelUsername
 
 func _ready() -> void:
 	if current_peer == Network.PEERS.None:
@@ -34,6 +35,9 @@ func _ready() -> void:
 
 	Network.signal_error_raised.connect(on_error)
 	label_error.hide()
+
+	set_theme()
+
 
 func on_host():
 	Network.host()
@@ -68,3 +72,21 @@ func on_peer_selected(item_index):
 		Network.PEERS.Enet:
 			label_sessionid.hide()
 			line_edit_session.text = Network.IP_ADDRESS
+		Network.PEERS.EnetRelay:
+			label_sessionid.hide()
+			line_edit_session.text = Network.IP_ADDRESS
+		_: 
+			label_sessionid.show()
+
+func set_theme():
+	button_host.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	button_join.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	button_quit.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+	var host_style_box := StyleBoxFlat.new()
+	host_style_box.bg_color = Color.WEB_GREEN
+	button_host.add_theme_stylebox_override("normal", host_style_box)
+
+	var join_style_box := StyleBoxFlat.new()
+	join_style_box.bg_color = Color.DARK_MAGENTA
+	button_join.add_theme_stylebox_override("normal", join_style_box)

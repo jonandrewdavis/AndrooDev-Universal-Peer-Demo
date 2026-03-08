@@ -110,8 +110,7 @@ func shoot():
 	var pos = global_position
 	var shoot_dir = get_shoot_direction()
 	Global.shoot_ball.rpc_id(1, pos, shoot_dir, force)
-	if is_multiplayer_authority():
-		prints('DEBUG: PEERS:',multiplayer.get_peers())	
+
 	
 func get_shoot_direction():
 	var viewport_rect = get_viewport().get_visible_rect().size
