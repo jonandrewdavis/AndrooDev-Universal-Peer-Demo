@@ -2,17 +2,18 @@ extends Node
 
 const PLAYER = preload("uid://dbcqeo103wau6")
 
-var peer_selected: PEERS = PEERS.Enet: set = set_peer
+var peer_selected: PEERS = PEERS.EnetLocal: set = set_peer
+
 enum PEERS { 
 	None,
-	Enet,
+	EnetLocal,
 	EnetRelay,
-	WebRTC,	
+	WebRTC,
 	Websockets,
-	Steam,
-	Epic,
+	#Steam,
+	#Epic,
+	#SpacetimeDB,
 }
-
 
 #region Peer Init
 
@@ -24,7 +25,7 @@ var node_peer: NodeTunnelPeer
 var node_tunnel_address := 'us_east.nodetunnel.io:8080'
 var node_tunnel_id := 'vki6jrs3ezr133x'
 
-var tube_client := TubeClient.new()
+var tube_client := TubeClient.new() #WebRTC
 const TUBE_CONTEXT = preload("uid://chqw3jdoon6c1")
 
 # TODO: FreeMP
@@ -52,7 +53,7 @@ func set_peer(new_value: PEERS):
 	reset_all_peers()
 	
 	match new_value:	
-		PEERS.Enet:
+		PEERS.EnetLocal:
 			host_function = start_server
 			join_function = join_server
 		PEERS.EnetRelay:

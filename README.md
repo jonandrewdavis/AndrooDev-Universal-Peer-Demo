@@ -1,4 +1,4 @@
-# AndrooDev Friendslop Co-Op Tutorial PART 2
+# AndrooDev Friendslop Co-Op Tutorial PART 2 (MULTI PEER DEMO)
 
 The complete tutorial project from the [Godot Multiplayer Friendslop Co-Op Tutorial Part 2 on YouTube](https://www.youtube.com/watch?v=wgIqB6JNcro). Uses WebRTC via the Tube https://github.com/koopmyers/tube to make it easy to make a true peer-to-peer and play with your friends. See [Part 1 on YouTube here](https://youtu.be/NvG08tA06xQ) to build up your multiplayer fundamentals like syncing and spawning.
 
@@ -7,6 +7,18 @@ The complete tutorial project from the [Godot Multiplayer Friendslop Co-Op Tutor
 | https://www.twitch.tv/andoodev | https://www.youtube.com/@AndrooDev | https://androodev.itch.io/androodev-friendslop-co-op-sample |
 
 <img src="assets/docs/androodev-finished-part-2.png" width="500">
+
+## PLUS: Mutlti Peer
+
+|    Peer     |                                 Description                                  |                           Source                            |
+| :---------: | :--------------------------------------------------------------------------: | :---------------------------------------------------------: |
+|  EnetLocal  |                                  127.0.0.1                                   |                         Godot Docs                          |
+|  EnetRelay  |          Relay traffic through to a host (effectively peer-to-peer)          |                         NodeTunnel                          |
+|   WebRTC    |               True peer-to-peer using Tube for real time games               |          [Tube](https://github.com/koopmyers/tube)          |
+| Websockets  |               TCP-based peer for strategy or turn based games                |                                                             |
+|    Steam    |                       Minimal Steam lobby integration                        |                         GodotSteam                          |
+|    Epic     |                          Epic Online Services (EOS)                          |                             EOS                             |
+| SpacetimeDB | A newer framework for multiplayer games featuring server functions & storage | [SpacetimeDB](https://github.com/ClockworkLabs/SpacetimeDB) |
 
 ## Local Development:
 

@@ -116,6 +116,7 @@ func get_shoot_direction():
 	var viewport_rect = get_viewport().get_visible_rect().size
 	var raycast_start = camera_3d.project_ray_origin(viewport_rect / 2)
 	var raycast_end = raycast_start + camera_3d.project_ray_normal(viewport_rect / 2) * 200
+	
 	return -(raycast_start - raycast_end).normalized()
 
 @rpc("any_peer", 'call_local')
