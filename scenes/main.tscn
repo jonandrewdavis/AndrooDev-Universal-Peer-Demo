@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://drhjatayvlkyv"]
+[gd_scene load_steps=2 format=3 uid="uid://drhjatayvlkyv"]
 
 [ext_resource type="PackedScene" uid="uid://bdfqkb17jfva" path="res://scenes/ui/universal_menu.tscn" id="1_o5qli"]
 
-[node name="Main" type="Node" unique_id=114153298]
+[node name="Main" type="Node"]
 
-[node name="UniversalMenu" parent="." unique_id=539861531 instance=ExtResource("1_o5qli")]
+[node name="UniversalMenu" parent="." instance=ExtResource("1_o5qli")]
 current_peer = 0

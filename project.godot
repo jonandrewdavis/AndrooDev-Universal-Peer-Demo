@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="AndrooDev Friendslop Co-Op Tutorial Part 2"
+config/name="AndrooDevMultiPeerDemo"
 run/main_scene="uid://drhjatayvlkyv"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://cateu5bxe5nab"
 
 [autoload]

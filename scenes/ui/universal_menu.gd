@@ -72,11 +72,9 @@ func on_peer_selected(item_index):
 		Network.PEERS.EnetLocal:
 			label_sessionid.hide()
 			line_edit_session.text = Network.IP_ADDRESS
-		Network.PEERS.EnetRelay:
-			label_sessionid.hide()
-			line_edit_session.text = Network.IP_ADDRESS
 		_: 
 			label_sessionid.show()
+			line_edit_session.text = ""
 
 func set_theme():
 	button_host.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
