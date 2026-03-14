@@ -4,15 +4,16 @@ const PLAYER = preload("uid://dbcqeo103wau6")
 
 var peer_selected: PEERS = PEERS.EnetLocal: set = set_peer
 
+# TODO: Icons
 enum PEERS { 
 	None,
 	EnetLocal,
 	EnetRelay,
 	WebRTC,
 	Websockets,
-	#Steam,
-	#Epic,
-	#SpacetimeDB,
+	GodotSteam,
+	Epic,
+	SpacetimeDB,
 }
 
 #region Peer Init
@@ -32,7 +33,7 @@ const TUBE_CONTEXT = preload("uid://chqw3jdoon6c1")
 var websockets_peer
 
 # TODO: Steam
-var steam_peer
+var steam_peer: SteamMultiplayerPeer
 
 # TODO: Epic Online Service
 #@onready var peer: EOSGMultiplayerPeer = EOSGMultiplayerPeer.new()
@@ -40,7 +41,7 @@ var eos
 
 #endregion
 
-var current_session_id := ''
+var current_session_id
 var host_function: Callable
 var join_function: Callable
 
@@ -62,7 +63,7 @@ func set_peer(new_value: PEERS):
 			node_peer.room_connected.connect(handle_room_ready)
 			node_peer.error.connect(handle_error_raised)
 			node_peer.connect_to_relay(node_tunnel_address, node_tunnel_id)
-			host_function = start_node
+			host_function = start_node # TODO: These could be in a map or something to reduce repetition
 			join_function = join_node
 			multiplayer.multiplayer_peer = node_peer
 		PEERS.WebRTC:
@@ -72,16 +73,24 @@ func set_peer(new_value: PEERS):
 			join_function = join_tube
 			tube_client._session_initiated.connect(func(): current_session_id = tube_client.session_id)
 			tube_client.error_raised.connect(handle_error_raised)
+		PEERS.GodotSteam:
+			var is_steam_initilaized = Steam.steamInit(480, true)
+			if is_steam_initilaized == false:
+				push_warning('Steam not initialized')
+				prints("Steam not initialized. Did you forget to sign in? Result:", is_steam_initilaized)
+			else:
+				prints("Steam initialized:", is_steam_initilaized)
+				host_function = start_steam
+				join_function = join_steam
+				Steam.initRelayNetworkAccess()
+				steam_peer = SteamMultiplayerPeer.new()
+				steam_peer.server_relay = true
 
 # Bind?
 func host():
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	host_function.call()
-	if not peer_selected == PEERS.EnetRelay:
-		add_player(1)
-	else: 
-		node_peer.room_connected.connect(add_player_self)
 
 func join(session_id: String = ''):
 	multiplayer.peer_connected.connect(add_player) 
@@ -94,6 +103,7 @@ func join(session_id: String = ''):
 func start_server():
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
+	add_player(1)
 
 func join_server(_session_id: String = ''):
 	enet_peer.create_client(IP_ADDRESS, PORT)
@@ -101,17 +111,40 @@ func join_server(_session_id: String = ''):
 
 func start_tube():
 	tube_client.create_session()
+	add_player(1)
 
 func join_tube(session_id: String):
 	tube_client.join_session(session_id)
 
 func start_node():
 	node_peer.host_room(true, "")
+	node_peer.room_connected.connect(add_player_self)
 
 func join_node(session_id: String):
 	node_peer.join_room(session_id)
 
-#region 	
+func start_steam():
+	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, 16)
+	Steam.lobby_created.connect(on_steam_created)
+	
+func join_steam(lobby_id: String):
+	Steam.joinLobby(lobby_id.to_int())
+	Steam.lobby_joined.connect(on_steam_joined)
+
+func on_steam_created(result: int, lobby_id: int):
+	if result == Steam.Result.RESULT_OK:
+		prints("DEBUG:", lobby_id)
+		current_session_id = str(lobby_id)
+		steam_peer.create_host()
+		multiplayer.multiplayer_peer = steam_peer
+		add_player(1)
+
+func on_steam_joined(lobby_id: int, _permissions: int, _locked: bool, _response: int):
+	current_session_id = str(lobby_id)
+	steam_peer.create_client(Steam.getLobbyOwner(lobby_id))
+	multiplayer.multiplayer_peer = steam_peer
+
+#region
 
 func add_player_self():
 	add_player(multiplayer.get_unique_id())

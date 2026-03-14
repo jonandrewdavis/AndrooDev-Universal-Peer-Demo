@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dbcqeo103wau6"]
+[gd_scene load_steps=11 format=3 uid="uid://dbcqeo103wau6"]
 
 [ext_resource type="Script" uid="uid://bqta7emfadpxj" path="res://scenes/player/player.gd" id="1_wr5hl"]
 [ext_resource type="Texture2D" uid="uid://pxj3b3e28fg3" path="res://addons/tube/inspector/icons/clipboard_icon.tres" id="2_gfjak"]
@@ -33,33 +33,33 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Player" type="CharacterBody3D" unique_id=1582534974]
+[node name="Player" type="CharacterBody3D"]
 collision_layer = 9
 script = ExtResource("1_wr5hl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1789704607]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_o8nba")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2062670380]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_wr5hl")
 
-[node name="Head" type="Node3D" parent="." unique_id=2071305103]
+[node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Head" unique_id=659649992]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.4010596, -0.38197786)
 mesh = SubResource("CylinderMesh_gfjak")
 
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=2014816838]
+[node name="Camera3D" type="Camera3D" parent="Head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=447432846]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_wr5hl")
 
-[node name="Nameplate" type="Label3D" parent="." unique_id=2093794407]
+[node name="Nameplate" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4974716, 0)
 billboard = 2
@@ -68,15 +68,15 @@ text = "Peer ID"
 font_size = 24
 outline_size = 6
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1190293794]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="Controls" parent="CanvasLayer" unique_id=1906408976 instance=ExtResource("5_tpg5x")]
+[node name="Controls" parent="CanvasLayer" instance=ExtResource("5_tpg5x")]
 unique_name_in_owner = true
 offset_right = 127.0
 offset_bottom = 64.0
 
-[node name="Menu" type="Control" parent="CanvasLayer" unique_id=68847478]
+[node name="Menu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -85,41 +85,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Menu" unique_id=28982625]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Menu"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu/PanelContainer" unique_id=763618636]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Menu/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/PanelContainer/MarginContainer" unique_id=1136748676]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Menu/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1932282086]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LabelSession" type="Label" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=536262590]
+[node name="LabelSession" type="Label" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ButtonCopySession" type="Button" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=367801452]
+[node name="ButtonCopySession" type="Button" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/icon_max_width = 24
 icon = ExtResource("2_gfjak")
 
-[node name="ButtonLeave" type="Button" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=196040560]
+[node name="ButtonLeave" type="Button" parent="CanvasLayer/Menu/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Leave Game"
 
-[node name="Reticle" type="Panel" parent="CanvasLayer" unique_id=1077284790]
+[node name="Reticle" type="Panel" parent="CanvasLayer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,7 +135,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gfjak")
 
-[node name="HitMarker" type="Label" parent="CanvasLayer" unique_id=1391413418]
+[node name="HitMarker" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -149,18 +149,17 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1)
-pivot_offset_ratio = Vector2(0.5, 0)
 text = "X"
 horizontal_alignment = 1
 
-[node name="TopLeft" type="MarginContainer" parent="CanvasLayer" unique_id=705056818]
+[node name="TopLeft" type="MarginContainer" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SoundHit" type="AudioStreamPlayer" parent="." unique_id=625036051]
+[node name="SoundHit" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_524rm")
 
-[node name="SoundPing" type="AudioStreamPlayer" parent="." unique_id=1437128364]
+[node name="SoundPing" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_tpg5x")
