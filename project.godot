@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="AndrooDevMultiPeerDemo"
 run/main_scene="uid://drhjatayvlkyv"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://cateu5bxe5nab"
 
 [autoload]
@@ -24,6 +28,7 @@ Global="*uid://d1r3eqtrbojy0"
 [display]
 
 window/size/always_on_top=true
+window/stretch/scale=1.5
 
 [editor_plugins]
 
@@ -89,3 +94,10 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+
+[steam]
+
+initialization/app_id=0
+initialization/initialize_on_startup=false
+initialization/embed_callbacks=false
+multiplayer_peer/max_channels=4

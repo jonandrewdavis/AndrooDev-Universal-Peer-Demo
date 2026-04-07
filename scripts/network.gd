@@ -14,6 +14,7 @@ enum PEERS {
 	GodotSteam,
 	Epic,
 	SpacetimeDB,
+	GodotFusion
 }
 
 #region Peer Init
@@ -74,7 +75,7 @@ func set_peer(new_value: PEERS):
 			tube_client._session_initiated.connect(func(): current_session_id = tube_client.session_id)
 			tube_client.error_raised.connect(handle_error_raised)
 		PEERS.GodotSteam:
-			var is_steam_initilaized = Steam.steamInit(480, true)
+			var is_steam_initilaized = Steam.steamInit(480, true) # "Spacewars"
 			if is_steam_initilaized == false:
 				push_warning('Steam not initialized')
 				prints("Steam not initialized. Did you forget to sign in? Result:", is_steam_initilaized)

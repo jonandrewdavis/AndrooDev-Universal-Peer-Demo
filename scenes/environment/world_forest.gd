@@ -10,7 +10,7 @@ func _ready() -> void:
 	Global.spawn_container = spawn_container
 	
 	timer_target.timeout.connect(spawn_target)
-
+	
 func spawn_target():
 	if is_multiplayer_authority() and get_tree().get_node_count_in_group('Targets') < 10:
 		var new_target = TARGET.instantiate()
