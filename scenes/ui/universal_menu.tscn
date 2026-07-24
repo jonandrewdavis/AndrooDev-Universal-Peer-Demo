@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdfqkb17jfva"]
+[gd_scene format=3 uid="uid://bdfqkb17jfva"]
 
 [ext_resource type="Script" uid="uid://ca7utkloa4jua" path="res://scenes/ui/universal_menu.gd" id="1_7rbdq"]
 [ext_resource type="Texture2D" uid="uid://b4jdl1ipes5d0" path="res://addons/tube/inspector/icons/send_icon.tres" id="2_f2ujq"]
 [ext_resource type="Texture2D" uid="uid://vj4v31qi6u4d" path="res://addons/tube/inspector/icons/success_icon.tres" id="3_ckgpp"]
 [ext_resource type="Texture2D" uid="uid://wcdvmyl01v1p" path="res://addons/tube/inspector/icons/error_icon.tres" id="4_4h3yc"]
 
-[node name="UniversalMenuRoot" type="CanvasLayer"]
+[node name="UniversalMenuRoot" type="CanvasLayer" unique_id=154329336]
 script = ExtResource("1_7rbdq")
 current_peer = 1
 
-[node name="Name2" type="Control" parent="."]
+[node name="Name2" type="Control" parent="." unique_id=581131704]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="Name2"]
+[node name="Control" type="Control" parent="Name2" unique_id=1562573498]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Name2/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="Name2/Control" unique_id=900319387]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -40,71 +40,71 @@ offset_bottom = 164.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Name2/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Name2/Control/PanelContainer" unique_id=300404772]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UniversalMenu" type="VBoxContainer" parent="Name2/Control/PanelContainer/MarginContainer"]
+[node name="UniversalMenu" type="VBoxContainer" parent="Name2/Control/PanelContainer/MarginContainer" unique_id=1172199278]
 layout_mode = 2
 
-[node name="LabelTitle" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu"]
+[node name="LabelTitle" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu" unique_id=2114939799]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "AndrooDev Peer Test"
 
-[node name="LabelError" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu"]
+[node name="LabelError" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu" unique_id=61474317]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.09411765, 0, 1)
 text = "Something went wrong"
 horizontal_alignment = 1
 
-[node name="LabelSelectPeer" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu"]
+[node name="LabelSelectPeer" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu" unique_id=1147376393]
 layout_mode = 2
 text = "Select Peer:"
 
-[node name="SelectPeer" type="OptionButton" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu"]
+[node name="SelectPeer" type="OptionButton" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu" unique_id=782780253]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AllPeers" type="VBoxContainer" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu"]
+[node name="AllPeers" type="VBoxContainer" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu" unique_id=2093642250]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="H4" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="H4" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=1247795991]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="LabelUsername" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="LabelUsername" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=1009199964]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Username:"
 
-[node name="LineEditUsername" type="LineEdit" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="LineEditUsername" type="LineEdit" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=1350646929]
 unique_name_in_owner = true
 layout_mode = 2
 max_length = 12
 
-[node name="H1" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="H1" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=980452795]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="LabelSessionid" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="LabelSessionid" type="Label" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=837487204]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Session ID:"
 
-[node name="VBoxContainer" type="HBoxContainer" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="VBoxContainer" type="HBoxContainer" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=26257600]
 layout_mode = 2
 
-[node name="LineEditSession" type="LineEdit" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="LineEditSession" type="LineEdit" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=1210887197]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ButtonJoin" type="Button" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="ButtonJoin" type="Button" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=1523438341]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/icon_max_width = 24
@@ -112,11 +112,11 @@ text = "Join"
 icon = ExtResource("2_f2ujq")
 icon_alignment = 2
 
-[node name="H2" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="H2" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=1994785158]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="ButtonHost" type="Button" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="ButtonHost" type="Button" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=6437195]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/icon_max_width = 24
@@ -124,11 +124,11 @@ text = "Create Session"
 icon = ExtResource("3_ckgpp")
 icon_alignment = 2
 
-[node name="H3" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers"]
+[node name="H3" type="HSeparator" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu/AllPeers" unique_id=2144367476]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="ButtonQuit" type="Button" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu"]
+[node name="ButtonQuit" type="Button" parent="Name2/Control/PanelContainer/MarginContainer/UniversalMenu" unique_id=1284054336]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/icon_max_width = 24

@@ -24,8 +24,8 @@ var PORT := 9999
 var IP_ADDRESS := '127.0.0.1'
 
 var node_peer: NodeTunnelPeer
-var node_tunnel_address := 'us_east.nodetunnel.io:8080'
-var node_tunnel_id := 'vki6jrs3ezr133x'
+var node_tunnel_address := 'us-east.nodetunnel.io:8080'
+var node_tunnel_id := 'ppo3n246k03udnn'
 
 var tube_client := TubeClient.new() #WebRTC
 const TUBE_CONTEXT = preload("uid://chqw3jdoon6c1")
@@ -195,6 +195,7 @@ func handle_node_tunnel_ready():
 	print("NODE TUNNEL READY")
 
 func handle_room_ready():
+	print(node_peer)
 	current_session_id = node_peer.room_id
 	DisplayServer.clipboard_set(node_peer.room_id)
 

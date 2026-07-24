@@ -1,5 +1,15 @@
 # AndrooDev Friendslop Co-Op Tutorial PART 2 (MULTI PEER DEMO)
 
+<img src="assets/docs/multi-peer-sample.png" width="700">
+
+NOTE: WORK IN PROGRESS. NOT ALL PEERS ARE READY.
+
+Enet relay uses:
+
+- https://www.nodetunnel.io/
+
+---
+
 The complete tutorial project from the [Godot Multiplayer Friendslop Co-Op Tutorial Part 2 on YouTube](https://www.youtube.com/watch?v=wgIqB6JNcro). Uses WebRTC via the Tube https://github.com/koopmyers/tube to make it easy to make a true peer-to-peer and play with your friends. See [Part 1 on YouTube here](https://youtu.be/NvG08tA06xQ) to build up your multiplayer fundamentals like syncing and spawning.
 
 |             Twitch             |              Youtube               |            Play now on Itch (Send to a friend!)             |
